@@ -1,0 +1,137 @@
+<!-- 
+    <html>
+  
+        BINGO CHALLENGE!!!
+        Create programmatically (with JS) a BINGO board with 76 cells, from 1 to 76.
+        Create a button to randomize a number from 1 to 76. The same number should be highlighted on the bingo board
+
+        EXTRA: 
+        - Take ALWAYS a new number (eg. avoid randoming the number 10 3 times)
+        - Create a USER BOARD with 24 randomized numbers that highlights as the main board does
+        - Let the user choose HOW MANY user boards he's willing to play with and create them.
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bingo</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito&display=swap"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <style></style>
+  </head>
+
+  <body>
+    <h1>Bingo</h1>
+
+    <div id="bingo">
+
+      <!-- day cells will be inserted here -->
+
+    </div>
+
+    <h1>Numbers</h1>
+
+    <!-- add event form sections -->
+
+    <div id="addMeeting">
+
+      <div>
+        <h4>Meeting Day</h4>
+        <h4 id="meeting-day">Click on a Day</h4>
+      </div>
+
+      <div>
+        <h4>Selected Number:</h4>
+        <h3></h3>
+      </div>
+
+      <div>
+
+        <h4>Meeting Name</h4>
+
+        <input
+
+          type="text"
+
+          id="meeting-name"
+
+          placeholder="Insert a name for the meeting"/>
+      </div>
+
+      <div>
+
+        <h4>Random Number</h4>
+
+        <button onclick="getNumber">Get A Number</button>
+
+      </div>
+
+    </div>
+
+    <div id="appointments">
+
+      <h1>Appointments for the day!</h1>
+
+      <ul id="appointment-list"></ul>
+
+    </div>
+
+
+    <script>
+
+        let numbers = []
+
+        const randomNumbers =function () {
+           
+            
+        }
+
+        window.onload = function() {
+
+            let numberOfCells = 76
+            let bingo = document.getElementById('bingo')
+
+            for (let i = 0; i <= numberOfCells ; i++) {
+
+                let cell = document.createElement("div")
+
+                 cell.classList.add("number")
+            
+                 let number = document.createElement("h3")
+                    number.innerText= Math.floor(Math.random*75)
+                    
+
+                cell.appendChild(number)
+                bingo.appendChild(cell);
+                
+            }
+        
+            // let number = document.createElement("h3");
+        // day.innerText = i + 1;
+
+
+cell.onclick = function (event){
+    let alreadySelectedElement = document.querySelector(".selected")
+
+    if (alreadySelectedElement){
+        alreadySelectedElement.classList.remove("selected")
+    }
+  event.currentTarget.classList.add("selected")
+
+  let clickOnADayH4 = document.getElementById('meeting-day')
+  clickOnADayH4.innerText = i + 1
+}
+
+
+        }
+    
+    </script>
+  </body>
+
+</html>
