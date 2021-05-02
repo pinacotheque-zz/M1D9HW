@@ -17,16 +17,15 @@
   <head>
     <meta charset="utf-8" />
     <title>Bingo</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Nunito&display=swap"
-    />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="styles.css" />
 
     <style></style>
   </head>
 
   <body>
+    <div class="container">
     <h1>Bingo</h1>
 
     <div id="bingo">
@@ -35,77 +34,154 @@
 
     </div>
 
-    <h1>Numbers</h1>
-
+   
     <!-- add event form sections -->
 
     <div id="addMeeting">
 
-
       <div>
         <h4>Selected Number:</h4>
-        <h3></h3>
+        <h3 id="selectedNumber"> ... </h3>
       </div>
 
       <div>
-        <h4>Random Number</h4>
-        <button onclick="getNumber">Get A Number</button>
+        <h4>Random Number Generator</h4>
+      
+        <button type="button" onclick="getNumber()">Number</button>
       </div>
+      
+     
+     
 
     </div>
 
-    <div id="appointments">
-
-      <h1>Appointments for the day!</h1>
-
-      <ul id="appointment-list"></ul>
-
+    <div class="userBoards">
+      <div id="player1">
+        <h4>Player 1:</h4>
+      </div>
+     
+      <div id="player2">
+        <h4> Player 2:</h4>
+      </div>
     </div>
 
+  </div>
 
     <script>
 
-        let numbers = []
+      let numbers = [0]
+     
 
-        const randomNumbers =function () {
-           
-            
-        }
+      window.onload = function() {
+        let numberOfCells = 76
+        let bingo = document.getElementById('bingo')
+        for (let i = 0; i < numberOfCells ; i++) {
 
-        window.onload = function() {
+          let cell = document.createElement("div")
 
-            let numberOfCells = 76
-            let bingo = document.getElementById('bingo')
-
-            for (let i = 0; i <= numberOfCells ; i++) {
-
-                let cell = document.createElement("div")
-
-                 cell.classList.add("number")
-            
-                 let number = document.createElement("h3")
-                    number.innerText= Math.floor(Math.random()*100)
+                cell.classList.add("number")
+        
+                let number = document.createElement("h3")
+                  number.innerText= i + 1
 
                 cell.appendChild(number)
                 bingo.appendChild(cell);    
             }
+            
+             let arr1 = []
+             for (i=0; i<26;i++){
+            userRandom1 = Math.floor(Math.random()*75)+1
+            arr1.push(userRandom1)
+              }
+              console.log(arr1)
 
+        
 
-cell.onclick = function (event){
-    let alreadySelectedElement = document.querySelector(".selected")
+        let board1 = document.getElementById("player1")
+        
+        for (let i= 0; i<arr1.length ;i++){
+          
+          let userCell1 = document.createElement("div")
 
-    if (alreadySelectedElement){
-        alreadySelectedElement.classList.remove("selected")
-    }
-  event.currentTarget.classList.add("selected")
+          userCell1.classList.add("userNumber1")
 
-  let clickOnADayH4 = document.getElementById('meeting-day')
-  clickOnADayH4.innerText = i + 1
-}
+          let userNumber1 = document.createElement("h3")
 
+            userNumber1.innerText = arr1[i]
+            userCell1.appendChild(userNumber1)
+            player1.appendChild(userCell1)
 
         }
-    
+             let arr2 = []
+             for (i=0; i<26;i++){
+            userRandom2 = Math.floor(Math.random()*75)+1
+            arr2.push(userRandom2)
+              }
+              console.log(arr2)
+
+        
+
+        let board2 = document.getElementById("player2")
+        
+        for (let i= 0; i<arr2.length ;i++){
+          
+          let userCell2 = document.createElement("div")
+
+          userCell2.classList.add("userNumber2")
+
+          let userNumber2 = document.createElement("h3")
+
+            userNumber2.innerText = arr2[i]
+            userCell2.appendChild(userNumber2)
+            player2.appendChild(userCell2)
+
+        }
+
+        // let board = document.createElement("div");
+        
+        // for (let i = 0; i < 24; i++) {
+        //  const random = Math.floor(Math.random()*75)+1
+        //  board.innerHTML += `<div class='number'>${random}</div>`;
+        //     }
+        // container.appendChild(board);
+          
+        }
+          
+        
+      function getNumber() {
+        
+        let cell = document.getElementsByClassName("number")
+        let printNumber = document.getElementById("selectedNumber")
+
+        let anyNumber = Math.floor(Math.random()*75)+1
+         printNumber.innerText = anyNumber
+        
+        let board1highlight= document.querySelectorAll("#player1 .userNumber1")
+        
+       
+        //aynı sayı dönmesin diye for çevirmeye çalıştım ama olmadı.
+        //  for (i=0;i <numbers.length;i++){
+        //   if (anyNumber!==numbers[i]){
+        //   }
+        // 
+
+        numbers.push(anyNumber)
+          console.log(numbers)
+
+          
+          
+        }
+
+        
+
+          // let anyNumber = document.getElementById('selectedNumber')
+          //     anyNumber.innerHTML = Math.floor(Math.random()*76)
+          //     return anyNumber
+        
+       
+
+
+        
     </script>
   </body>
 
