@@ -83,17 +83,17 @@
         
                 let number = document.createElement("h3")
                   number.innerText= i + 1
+                  number.className=`number-${i+1}`
 
                 cell.appendChild(number)
                 bingo.appendChild(cell);    
             }
             
              let arr1 = []
-             for (i=0; i<26;i++){
-            userRandom1 = Math.floor(Math.random()*75)+1
-            arr1.push(userRandom1)
-              }
-              console.log(arr1)
+             while(arr1.length!==26){
+                userRandom1 = Math.floor(Math.random()*75)+1
+                arr1=[...new Set([...arr1,userRandom1])]
+               }
 
         
 
@@ -106,6 +106,7 @@
           userCell1.classList.add("userNumber1")
 
           let userNumber1 = document.createElement("h3")
+          userNumber1.className=`number-${arr1[i]}`
 
             userNumber1.innerText = arr1[i]
             userCell1.appendChild(userNumber1)
@@ -113,14 +114,12 @@
 
         }
              let arr2 = []
-             for (i=0; i<26;i++){
-            userRandom2 = Math.floor(Math.random()*75)+1
-            arr2.push(userRandom2)
-              }
-              console.log(arr2)
-
-        
-
+             while(arr2.length!==26){
+                userRandom2 = Math.floor(Math.random()*75)+1
+                arr2=[...new Set([...arr2,userRandom2])]
+               }
+             
+              console.log({arr1Duplicate:new Set(arr1).size!==arr1.length,arr2Duplicate:new Set(arr2).size!==arr2.length})
         let board2 = document.getElementById("player2")
         
         for (let i= 0; i<arr2.length ;i++){
@@ -132,6 +131,7 @@
           let userNumber2 = document.createElement("h3")
 
             userNumber2.innerText = arr2[i]
+            userNumber2.className=`number-${arr2[i]}`
             userCell2.appendChild(userNumber2)
             player2.appendChild(userCell2)
 
@@ -155,7 +155,12 @@
 
         let anyNumber = Math.floor(Math.random()*75)+1
          printNumber.innerText = anyNumber
-        
+        let numberElements = document.querySelectorAll(`.number-${anyNumber}`)
+        numberElements.forEach(numberElement=>{
+          if(numberElement){
+          numberElement.style.backgroundColor="green" ;
+        }
+        })
         let board1highlight= document.querySelectorAll("#player1 .userNumber1")
         
        
